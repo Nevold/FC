@@ -54,7 +54,8 @@ module.exports = {
     'unicorn/prefer-add-event-listener': 'off', // TODO:delete
     '@typescript-eslint/member-ordering': 'off', // TODO:delete
     '@typescript-eslint/explicit-function-return-type': 'off', // TODO:delete
-    'eslint max-classes-per-file': 'off' // TODO:delete
+    'eslint max-classes-per-file': 'off', // TODO:delete
+    'class-methods-use-this': 'off' // TODO:delete
   },
   noInlineConfig: true,
   reportUnusedDisableDirectives: true

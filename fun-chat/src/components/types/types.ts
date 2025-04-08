@@ -61,3 +61,11 @@ export type NodeType = HTMLElement | HTMLLabelElement | HTMLButtonElement | HTML
 export interface Options {
   [key: string]: string;
 }
+
+export type WebSocketMessage = {
+  id: string | null;
+  type: string;
+  payload: {
+    // Request payload
+  };
+};
