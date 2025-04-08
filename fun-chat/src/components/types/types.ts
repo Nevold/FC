@@ -62,10 +62,14 @@ export interface Options {
   [key: string]: string;
 }
 
-export type WebSocketMessage = {
-  id: string | null;
-  type: string;
-  payload: {
-    // Request payload
-  };
-};
+export type WebSocketMessage = string | ArrayBuffer | Blob | ArrayBufferView;
+export type WebSocketHandler = (message: unknown) => void;
+export type WebSocketErrorHandler = (error: Event) => void;
+export type WebSocketCloseHandler = (event: CloseEvent) => void;
+
+export interface WebSocketClientConfig {
+  url: string;
+  reconnectInterval?: number;
+  maxReconnectAttempts?: number;
+  protocols?: string | string[];
+}
