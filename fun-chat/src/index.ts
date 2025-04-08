@@ -162,3 +162,46 @@ ws.connect();
 // setTimeout(() => {
 //   chatClient.close();
 // }, 30000);
+
+// очередь
+// class WebSocketClientWithQueue extends WebSocketClient {
+//   private messageQueue: WebSocketMessage[] = [];
+
+//   protected onOpen(event: Event): void {
+//     super.onOpen(event);
+//     // Отправляем все сообщения из очереди
+//     this.messageQueue.forEach(message => this.send(message));
+//     this.messageQueue = [];
+//   }
+
+//   public send(message: WebSocketMessage): void {
+//     if (this.socket && this.socket.readyState === WebSocket.OPEN) {
+//       super.send(message);
+//     } else {
+//       console.log('Сообщение добавлено в очередь');
+//       this.messageQueue.push(message);
+//     }
+//   }
+// }
+
+// ping
+// class WebSocketClientWithPing extends WebSocketClient {
+//   private pingInterval: number = 30000; // 30 секунд
+//   private pingTimer?: number;
+
+//   protected onOpen(event: Event): void {
+//     super.onOpen(event);
+//     // Запускаем пинг
+//     this.pingTimer = window.setInterval(() => {
+//       this.send({ type: 'ping' });
+//     }, this.pingInterval);
+//   }
+
+//   protected onClose(event: CloseEvent): void {
+//     super.onClose(event);
+//     // Очищаем таймер
+//     if (this.pingTimer) {
+//       clearInterval(this.pingTimer);
+//     }
+//   }
+// }
