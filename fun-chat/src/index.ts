@@ -9,9 +9,11 @@ import './style.css';
 
 // Типы для наших сообщений (можно расширить по необходимости)
 type WebSocketMessage = {
+  id: string | null;
   type: string;
-  data?: unknown;
-  error?: string;
+  payload: {
+    // Request payload
+  };
 };
 
 class WebSocketClient {
@@ -85,7 +87,7 @@ class WebSocketClient {
   }
 
   // Методы для переопределения (хуки)
-  protected onOpen(event: Event): void {
+  protected onOpen(_event: Event): void {
     // Можно переопределить в наследнике
   }
 
@@ -105,63 +107,74 @@ class WebSocketClient {
 
 // start
 
-const ws = new WebSocketClient('http://127.0.0.1:4000');
-ws.connect();
+// const ws = new WebSocketClient('http://127.0.0.1:4000');
+// ws.connect();
 
 // Расширяем базовый класс для конкретного использования
-// class ChatWebSocketClient extends WebSocketClient {
-//   constructor(url: string) {
-//     super(url);
-//   }
+class ChatWebSocketClient extends WebSocketClient {
+  constructor(url: string) {
+    super(url);
+  }
 
-//   // Отправка сообщения чата
-//   public sendMessage(text: string): void {
-//     this.send({
-//       type: 'chat_message',
-//       data: { text }
-//     });
-//   }
+  // Отправка сообщения чата
+  public sendMessage(_text: string): void {
+    this.send({
+      id: 'string | null',
+      type: 'string',
+      payload: {
+        // Request payload
+      }
+    });
+  }
 
-//   // Обработка входящих сообщений
-//   protected onMessage(message: WebSocketMessage): void {
-//     super.onMessage(message);
+  // Обработка входящих сообщений
+  protected onMessage(message: WebSocketMessage): void {
+    super.onMessage(message);
 
-//     switch (message.type) {
-//       case 'chat_message':
-//         console.log('Новое сообщение чата:', message.data);
-//         // Здесь можно обновить UI
-//         break;
-//       case 'user_joined':
-//         console.log('Пользователь присоединился:', message.data);
-//         break;
-//       case 'user_left':
-//         console.log('Пользователь вышел:', message.data);
-//         break;
-//       default:
-//         console.log('Неизвестный тип сообщения:', message);
-//     }
-//   }
+    switch (message.type) {
+      case 'chat_message':
+        console.log('Новое сообщение чата:', message);
+        // Здесь можно обновить UI
+        break;
+      case 'user_joined':
+        console.log('Пользователь присоединился:', message);
+        break;
+      case 'user_left': {
+        console.log('Пользователь вышел:', message);
+        break;
+      }
+      default: {
+        console.log('Неизвестный тип сообщения:', message);
+      }
+    }
+  }
 
-//   protected onOpen(event: Event): void {
-//     super.onOpen(event);
-//     console.log('Чат подключен');
-//     // Можно отправить приветственное сообщение или запросить историю
-//     this.send({ type: 'get_history' });
-//   }
-// }
+  protected onOpen(event: Event): void {
+    super.onOpen(event);
+    console.log('Чат подключен');
+    // Можно отправить приветственное сообщение или запросить историю
+    this.send({
+      id: 'string | null',
+      type: 'string',
+      payload: {
+        // Request payload
+      }
+    });
+  }
+}
 
-// // Использование
-// const chatClient = new ChatWebSocketClient('wss://example.com/chat');
+// Использование
+const chatClient = new ChatWebSocketClient('ws://127.0.0.1:4000');
 
-// // Отправка сообщения через 5 секунд
-// setTimeout(() => {
-//   chatClient.sendMessage('Привет, мир!');
-// }, 5000);
+// Отправка сообщения через 5 секунд
+setTimeout(() => {
+  chatClient.sendMessage('Привет, мир!');
+}, 5000);
 
-// // Закрытие соединения через 30 секунд
-// setTimeout(() => {
-//   chatClient.close();
-// }, 30000);
+// Закрытие соединения через 30 секунд
+setTimeout(() => {
+  chatClient.close();
+}, 30000);
 
 // очередь
 // class WebSocketClientWithQueue extends WebSocketClient {
