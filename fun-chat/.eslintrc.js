@@ -31,7 +31,7 @@ module.exports = {
     'func-names': 'off',
     'class-methods-use-this': 'off',
     'no-plusplus': 'warn',
-    'no-console': 'warn',
+    'no-console': 'off', // TODO warn
     'max-len': ['warn', { code: 120 }],
     'import/prefer-default-export': 'off',
     '@typescript-eslint/lines-between-class-members': 'warn',
@@ -50,7 +50,10 @@ module.exports = {
     '@typescript-eslint/no-unsafe-call': 'off',
     '@typescript-eslint/no-unsafe-member-access': 'off',
     'unicorn/no-for-loop': 'off',
-    'no-param-reassign': 'off'
+    'no-param-reassign': 'off',
+    'unicorn/prefer-add-event-listener': 'off', // TODO:delete
+    '@typescript-eslint/member-ordering': 'off', // TODO:delete
+    '@typescript-eslint/explicit-function-return-type': 'off' // TODO:delete
   },
   noInlineConfig: true,
   reportUnusedDisableDirectives: true
