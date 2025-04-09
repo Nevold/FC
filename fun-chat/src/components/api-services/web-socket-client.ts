@@ -1,7 +1,7 @@
 class WebSocketClient {
   private socket: WebSocket | null = null;
 
-  private url: string;
+  // private url: string;
 
   private reconnectAttempts: number = 0;
 
@@ -9,8 +9,8 @@ class WebSocketClient {
 
   private reconnectDelay: number = 3000;
 
-  constructor(url: string) {
-    this.url = url;
+  constructor(private url: string) {
+    // this.url = url;
     this.connect();
   }
 

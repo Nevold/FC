@@ -140,7 +140,16 @@ class ChatClient extends WebSocketClient {
 
   protected onOpen(): void {
     console.log('Chat connected!');
-    this.send({ type: 'join', username: 'User123' });
+    this.send({
+      id: 'string',
+      type: 'USER_LOGIN',
+      payload: {
+        user: {
+          login: 'string',
+          password: 'string'
+        }
+      }
+    });
   }
 
   protected onMessage(data: unknown): void {
@@ -175,6 +184,8 @@ class ChatClient extends WebSocketClient {
   }
 
   public sendMessage(text: string): void {
+    // this.send({ type: 'chat', content: text });
+    console.log(this);
     this.send({ type: 'chat', content: text });
   }
 
