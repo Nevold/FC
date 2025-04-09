@@ -40,7 +40,7 @@ export class Nodes {
 
   public static readonly h2 = new BaseComponent('', 'h2', 'Authorization').getNode();
 
-  public static readonly form = new BaseComponent('', 'form').getNode();
+  public static readonly form = new BaseComponent('', 'form', '', { novalidate: '' }).getNode();
 
   public static readonly formGroupForUsername = new BaseComponent('form-group', 'div').getNode();
 
@@ -65,4 +65,16 @@ export class Nodes {
   }).getNode();
 
   public static readonly loginButton = new BaseComponent('login-button', 'button', 'Log In').getNode();
+
+  public static readonly errorMessageForUsername = new BaseComponent(
+    'error-message',
+    'div',
+    'Пожалуйста, введите имя пользователя'
+  ).getNode();
+
+  public static readonly errorMessageForPassword = new BaseComponent(
+    'error-message',
+    'div',
+    'Пароль должен содержать минимум 6 символов'
+  ).getNode();
 }

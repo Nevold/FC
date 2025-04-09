@@ -1,6 +1,5 @@
 import AuthenticationClient from './components/api-services/authentication-client';
-import AuthenticationPage from './components/view/authentication-page/authentication-page';
-import { Nodes } from './components/view/nodes';
+import AuthenticationLogic from './components/controllers/authentication-logic';
 import './global.css';
 
 // Инициализация при загрузке страницы
@@ -26,14 +25,5 @@ document.addEventListener('DOMContentLoaded', () => {
   //     messageInput.value = '';
   //   }
   // });
-  AuthenticationPage.view();
-
-  Nodes.form.addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    const username = new FormData(this).get('username');
-    const password = new FormData(this).get('password');
-
-    console.log(username, '!', password);
-  });
+  AuthenticationLogic.start();
 });

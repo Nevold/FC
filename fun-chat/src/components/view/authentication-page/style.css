@@ -1,6 +1,7 @@
 .login-container {
   width: 100%;
   max-width: 400px;
+  margin: 10px;
   padding: 20px 30px;
   border-radius: 8px;
   background-color: white;
@@ -63,4 +64,15 @@
 
 .forgot-password a:hover {
   text-decoration: underline;
+}
+
+.error-message {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #dc3545;
+  visibility: hidden;
+}
+
+.input-error {
+  border-color: #dc3545 !important;
 }
