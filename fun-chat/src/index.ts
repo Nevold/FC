@@ -1,5 +1,6 @@
 import AuthenticationClient from './components/api-services/authentication-client';
-import './style.css';
+import AuthenticationPage from './components/view/authentication-page/authentication-page';
+import './global.css';
 
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
@@ -24,4 +25,5 @@ document.addEventListener('DOMContentLoaded', () => {
   //     messageInput.value = '';
   //   }
   // });
+  AuthenticationPage.view();
 });

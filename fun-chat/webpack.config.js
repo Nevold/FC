@@ -69,6 +69,9 @@ module.exports = ({ development }) => ({
       title: 'Fun Chat',
       favicon: './public/favicon.ico'
     }),
+    // new HtmlWebpackPlugin({
+    //   template: './src/index.html'
+    // }),
     new CopyPlugin({
       patterns: [{ from: 'public' }]
     }),
