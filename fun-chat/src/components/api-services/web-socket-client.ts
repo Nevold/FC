@@ -1,5 +1,5 @@
-class WebSocketClient {
-  private socket: WebSocket | null = null;
+abstract class WebSocketClient {
+  private socket: WebSocket | undefined;
 
   // private url: string;
 
@@ -11,40 +11,40 @@ class WebSocketClient {
 
   constructor(private url: string) {
     // this.url = url;
-    this.connect();
+    // this.connect();
   }
 
-  private connect(): void {
+  public connect(): void {
     this.socket = new WebSocket(this.url);
 
-    this.socket.onopen = () => {
+    this.socket.addEventListener('open', () => {
       console.log('WebSocket connected');
       this.reconnectAttempts = 0;
       this.onOpen();
-    };
+    });
 
-    this.socket.onmessage = event => {
+    this.socket.addEventListener('message', event => {
       try {
         const data = this.parseMessage(event.data);
         this.onMessage(data);
       } catch (error) {
         console.error('Error parsing message:', error);
       }
-    };
+    });
 
-    this.socket.onerror = error => {
+    this.socket.addEventListener('error', error => {
       console.error('WebSocket error:', error);
       this.onError(error);
-    };
+    });
 
-    this.socket.onclose = event => {
+    this.socket.addEventListener('close', event => {
       console.log('WebSocket closed:', event.code, event.reason);
       this.onClose(event);
 
       if (event.code !== 1000 && this.reconnectAttempts < this.maxReconnectAttempts) {
         this.reconnect();
       }
-    };
+    });
   }
 
   private parseMessage(data: string): unknown {
@@ -80,11 +80,11 @@ class WebSocketClient {
   // Методы для переопределения в наследниках
   protected onOpen(): void {}
 
-  protected onMessage(data: unknown): void {}
+  protected onMessage(_data: unknown): void {}
 
-  protected onError(error: Event): void {}
+  protected onError(_error: Event): void {}
 
-  protected onClose(event: CloseEvent): void {}
+  protected onClose(_event: CloseEvent): void {}
 }
 
 export default WebSocketClient;

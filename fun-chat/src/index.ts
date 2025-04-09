@@ -1,10 +1,11 @@
-import ChatClient from './components/api-services/authentication-client';
+import AuthenticationClient from './components/api-services/authentication-client';
 import './style.css';
 
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
   // Создаем клиент (используйте ваш реальный WebSocket URL)
-  const chatClient = new ChatClient('ws://127.0.0.1:4000');
+  const authenticationClient = new AuthenticationClient('ws://127.0.0.1:4000');
+  authenticationClient.connect();
 
   // // Обработчики UI
   // const sendButton = document.querySelector('#sendButton');
