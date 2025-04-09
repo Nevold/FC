@@ -1,5 +1,5 @@
 import { Nodes } from '../nodes';
-import './style.module.css';
+import './style.css';
 
 class AuthenticationPage {
   public static readonly view = (): void => {
