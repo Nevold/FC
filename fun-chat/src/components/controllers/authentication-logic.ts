@@ -49,6 +49,9 @@ class AuthenticationLogic {
       if (password === '') {
         this.showError('password', 'Enter password');
         isValid = false;
+      } else if (typeof password === 'string' && (!/[a-z]/.test(password) || !/[A-Z]/.test(password))) {
+        this.showError('password', 'The password must contain at least one lowercase and one uppercase letter.');
+        isValid = false;
       } else if (typeof password === 'string' && password.length < 4) {
         this.showError('password', 'Password must be at least 4 characters');
         isValid = false;
